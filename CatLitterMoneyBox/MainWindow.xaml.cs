@@ -52,7 +52,7 @@ public partial class MainWindow: Window
         {
         if(File.Exists(pathF))
             {
-            BankAccount fe = JsonConvert.DeserializeObject<BankAccount>(pathF);
+            BankAccount fe = JsonConvert.DeserializeObject<BankAccount>(File.ReadAllText(pathF));
             return fe;
             }
         else
@@ -64,7 +64,7 @@ public partial class MainWindow: Window
         {
         if(File.Exists(pathP))
             {
-            BankAccount pa = JsonConvert.DeserializeObject<BankAccount>(pathP);
+            BankAccount pa = JsonConvert.DeserializeObject<BankAccount>(File.ReadAllText(pathP));
             return pa;
             }
         else
