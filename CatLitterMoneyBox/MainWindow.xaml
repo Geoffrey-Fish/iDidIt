@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CatLitterMoneyBox"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid Margin="0,0,24,0">
+        Title="MainWindow" Height="450" Width="796">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
@@ -14,26 +14,6 @@
         <CheckBox x:Name="Klozwei_cb" Content="Klöle zwei" HorizontalAlignment="Left" Margin="220,263,0,0" VerticalAlignment="Top" Checked="Klozwei_cb_Checked" Height="15" Width="73"/>
         <TextBlock HorizontalAlignment="Left" Margin="287,27,0,0" TextWrapping="Wrap" Text="KatzenKlo Sparschwein" VerticalAlignment="Top" FontFamily="Bahnschrift SemiBold SemiCondensed" FontSize="24" Height="29" Width="220"/>
         <Calendar x:Name="Calendar_cal" HorizontalAlignment="Left" Margin="308,122,0,0" VerticalAlignment="Top" Height="168" Width="179"/>
-        <Image x:Name="karlchen_img" Margin="80,124,568,227" Source="/20221121_215750.jpg" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="90.736"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Image.RenderTransform>
-        </Image>
-        <Image x:Name="kessi_img" Margin="75,261,574,75" Source="/20191228_105036.jpg" Stretch="Fill" RenderTransformOrigin="0.5,0.5" SnapsToDevicePixels="True">
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="90.856"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Image.RenderTransform>
-        </Image>
         <TextBlock x:Name="werwars_tbl" HorizontalAlignment="Left" Margin="511,111,0,0" TextWrapping="Wrap" Text="Wer hat geschuftet?" VerticalAlignment="Top" FontFamily="Bahnschrift Condensed" FontSize="18" Height="22" Width="119"/>
         <TextBlock x:Name="wannImCal_tbl" HorizontalAlignment="Left" Margin="324,75,0,0" TextWrapping="Wrap" Text="Wann wurde geschafft?" VerticalAlignment="Top" FontFamily="Bahnschrift SemiBold SemiCondensed" FontSize="16" Height="19" Width="145"/>
         <RadioButton x:Name="Feli_radbt" Content="Felicitas" HorizontalAlignment="Left" Margin="511,163,0,0" VerticalAlignment="Top" Checked="Feli_radbt_Checked" RenderTransformOrigin="-0.256,-1.089" Height="15" Width="61"/>
@@ -43,6 +23,26 @@
         <Button x:Name="AbhebenGuthaben_btn" Content="Abheben" HorizontalAlignment="Left" Margin="352,371,0,0" VerticalAlignment="Top" Width="90" Click="AbhebenGuthaben_btn_Click" Height="20"/>
         <TextBox x:Name="Abhebebox_tb" HorizontalAlignment="Left" Margin="468,371,0,0" TextWrapping="Wrap" Text="0.00" VerticalAlignment="Top" Width="120" IsEnabled="False" Height="18"/>
         <Button x:Name="Buchen_btn" Content="Buchen!" HorizontalAlignment="Left" Margin="616,371,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.25,0.319" IsEnabled="True" Click="Buchen_btn_Click" Height="20" Width="46"/>
+        <Image HorizontalAlignment="Left" Height="100" Margin="138,151,0,0" VerticalAlignment="Top" Width="100" Source="/20191228_105036.jpg" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90.083"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Image HorizontalAlignment="Left" Height="84" Margin="140,278,0,0" VerticalAlignment="Top" Width="94" Source="/20221121_215750.jpg" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90.445"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
 
     </Grid>
 </Window>
