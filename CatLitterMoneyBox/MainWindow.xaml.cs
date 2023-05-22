@@ -23,8 +23,8 @@ public partial class MainWindow: Window
     public static bool FeliDidIt; //Radiobutton checked
     public static double BufferSum; //unneccesary for calculation, only for my brain
     public static DateTime Today;
-    public static string pathF = @"D:\GitHub\iDidIt\CatLitterMoneyBox\feliBank.json";
-    public static string pathP = @"D:\GitHub\iDidIt\CatLitterMoneyBox\pauliBank.json";
+    public static string pathF = "feliBank.json";
+    public static string pathP = "pauliBank.json";
     #endregion
 
     #region Checkboxes & Radios
@@ -39,12 +39,15 @@ public partial class MainWindow: Window
     private void Feli_radbt_Checked(object sender, RoutedEventArgs e)
         {
         FeliDidIt = FeliDidIt ? false : true;
+        PauliDidIt = FeliDidIt ? false : true;
         }
     private void Pauli_radbt_Checked(object sender, RoutedEventArgs e)
         {
         PauliDidIt = PauliDidIt ? false : true;
+        FeliDidIt = PauliDidIt ? false : true;
         }
     #endregion
+    #region Bankaccounts
 
     //Get Account data and serve it.If never run before, generate it
     //With Newtons Json converted into bits
@@ -72,9 +75,10 @@ public partial class MainWindow: Window
             return new BankAccount("Pauli", DateTime.Now, 0.0);
             }
         }
+    #endregion
 
 
-    //Adding money when Berechnen pressed with read and write
+    //Adding Money
     private void Berechnen_btn_Click(object sender, RoutedEventArgs e)
         {
         Today = Calendar_cal.SelectedDate.Value;
@@ -99,7 +103,7 @@ public partial class MainWindow: Window
             bankbuffer.Date = Today;
             File.WriteAllText(pathP, JsonConvert.SerializeObject(bankbuffer));
             }
-        MessageBox.Show("Geld erfolgreich verbucht!");
+        MessageBox.Show("Geld erfolgreich eingezahlt!");
         }
 
 
@@ -108,10 +112,10 @@ public partial class MainWindow: Window
     //radiobutton selected user.
     private void AbfrageGuthaben_btn_Click(object sender, RoutedEventArgs e)
         {
-        BankAccount pauli = GetPauliAccount();
-        BankAccount feli = GetFeliAccount();
-        MessageBox.Show($"Feli hat: {feli.Money.ToString()} Euro. Stand: {feli.Date}.\n" +
-            $"Pauli hat: {pauli.Money.ToString()} Euro. Stand: {pauli.Date}.");
+        BankAccount pupil = FeliDidIt ? GetFeliAccount() : GetPauliAccount();
+
+        MessageBox.Show($"{pupil.Name} hat: {pupil.Money.ToString("0.00")} Euro. Stand: {pupil.Date.ToShortDateString()}.\n");
+        pupil = null;
         }
 
     #region Abbuchungsvorgang
@@ -131,15 +135,15 @@ public partial class MainWindow: Window
             {
             MessageBox.Show($"Soviel ist nicht vorhanden!\n" +
                 $"{bufferAccount.Name} hat\n" +
-                $"{bufferAccount.Money} Euro\n" +
+                $"{bufferAccount.Money.ToString("0.00")} Euro\n" +
                 $"auf dem Konto.");
-            Abhebebox_tb.Text = bufferAccount.Money.ToString();
+            Abhebebox_tb.Text = bufferAccount.Money.ToString("0.00");
             }
         else
             {
             bufferAccount.Money -= abhebung;
-            MessageBox.Show($"{abhebung} Euro erfolgreich abgebucht!\n" +
-                $"Es verbleiben {bufferAccount.Money} Euro\n" +
+            MessageBox.Show($"{abhebung.ToString("0.00")} Euro erfolgreich abgebucht!\n" +
+                $"Es verbleiben {bufferAccount.Money.ToString("0.00")} Euro\n" +
                 $" auf dem Konto von {bufferAccount.Name}.");
             bufferAccount.Date = Today;
             File.WriteAllText(path, JsonConvert.SerializeObject(bufferAccount));

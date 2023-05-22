@@ -1,48 +1,49 @@
-﻿<Window x:Class="CatLitterMoneyBox.MainWindow"
+﻿<Window x:Name="Main_Window" x:Class="CatLitterMoneyBox.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CatLitterMoneyBox"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="796">
-    <Grid>
+        Title="MainWindow" AutomationProperties.HelpText="Katzenklo" Height="660" Width="320">
+    <Grid HorizontalAlignment="Center" Width="320" Height="646" VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <CheckBox x:Name="Kloeins_cb" Content="Klöle eins" HorizontalAlignment="Left" Margin="222,175,0,0" VerticalAlignment="Top" Checked="Kloeins_cb_Checked" Height="15" Width="70"/>
-        <CheckBox x:Name="Klozwei_cb" Content="Klöle zwei" HorizontalAlignment="Left" Margin="220,263,0,0" VerticalAlignment="Top" Checked="Klozwei_cb_Checked" Height="15" Width="73"/>
-        <TextBlock HorizontalAlignment="Left" Margin="287,27,0,0" TextWrapping="Wrap" Text="KatzenKlo Sparschwein" VerticalAlignment="Top" FontFamily="Bahnschrift SemiBold SemiCondensed" FontSize="24" Height="29" Width="220"/>
-        <Calendar x:Name="Calendar_cal" HorizontalAlignment="Left" Margin="308,122,0,0" VerticalAlignment="Top" Height="168" Width="179"/>
-        <TextBlock x:Name="werwars_tbl" HorizontalAlignment="Left" Margin="511,111,0,0" TextWrapping="Wrap" Text="Wer hat geschuftet?" VerticalAlignment="Top" FontFamily="Bahnschrift Condensed" FontSize="18" Height="22" Width="119"/>
-        <TextBlock x:Name="wannImCal_tbl" HorizontalAlignment="Left" Margin="324,75,0,0" TextWrapping="Wrap" Text="Wann wurde geschafft?" VerticalAlignment="Top" FontFamily="Bahnschrift SemiBold SemiCondensed" FontSize="16" Height="19" Width="145"/>
-        <RadioButton x:Name="Feli_radbt" Content="Felicitas" HorizontalAlignment="Left" Margin="511,163,0,0" VerticalAlignment="Top" Checked="Feli_radbt_Checked" RenderTransformOrigin="-0.256,-1.089" Height="15" Width="61"/>
-        <RadioButton x:Name="Pauli_radbt" Content="Paulinus" HorizontalAlignment="Left" Margin="511,217,0,0" VerticalAlignment="Top" Checked="Pauli_radbt_Checked" Height="15" Width="63"/>
-        <Button x:Name="Berechnen_btn" Content="Berechnen" HorizontalAlignment="Left" Margin="511,270,0,0" VerticalAlignment="Top" Width="85" Click="Berechnen_btn_Click" Height="20"/>
-        <Button x:Name="AbfrageGuthaben_btn" Content="Abfrage" HorizontalAlignment="Left" Margin="353,322,0,0" VerticalAlignment="Top" Width="90" Click="AbfrageGuthaben_btn_Click" Height="20"/>
-        <Button x:Name="AbhebenGuthaben_btn" Content="Abheben" HorizontalAlignment="Left" Margin="352,371,0,0" VerticalAlignment="Top" Width="90" Click="AbhebenGuthaben_btn_Click" Height="20"/>
-        <TextBox x:Name="Abhebebox_tb" HorizontalAlignment="Left" Margin="468,371,0,0" TextWrapping="Wrap" Text="0.00" VerticalAlignment="Top" Width="120" IsEnabled="False" Height="18"/>
-        <Button x:Name="Buchen_btn" Content="Buchen!" HorizontalAlignment="Left" Margin="616,371,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.25,0.319" IsEnabled="True" Click="Buchen_btn_Click" Height="20" Width="46"/>
-        <Image HorizontalAlignment="Left" Height="100" Margin="138,151,0,0" VerticalAlignment="Top" Width="100" Source="/20191228_105036.jpg" RenderTransformOrigin="0.5,0.5">
-            <Image.RenderTransform>
+        <CheckBox x:Name="Kloeins_cb" Content="Ein Klo" Margin="80,330,150,0" VerticalAlignment="Top" Checked="Kloeins_cb_Checked" Height="20" Width="90" FontFamily="Bahnschrift Light" FontSize="14" RenderTransformOrigin="0.833,-0.749"/>
+        <CheckBox x:Name="Klozwei_cb" Content="Beide Klos" Margin="160,330,70,0" VerticalAlignment="Top" Checked="Klozwei_cb_Checked" Height="20" Width="90" FontFamily="Bahnschrift Light" FontSize="14"/>
+        <TextBlock Margin="50,24,45,0" TextWrapping="Wrap" Text="KatzenKlo Sparschwein" VerticalAlignment="Top" FontFamily="Bahnschrift SemiBold SemiCondensed" FontSize="24" Height="23" Width="225" RenderTransformOrigin="0.5,0.5">
+            <TextBlock.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
                     <SkewTransform/>
-                    <RotateTransform Angle="90.083"/>
-                    <TranslateTransform/>
+                    <RotateTransform Angle="0.313"/>
+                    <TranslateTransform X="0.146" Y="0.002"/>
                 </TransformGroup>
-            </Image.RenderTransform>
-        </Image>
-        <Image HorizontalAlignment="Left" Height="84" Margin="140,278,0,0" VerticalAlignment="Top" Width="94" Source="/20221121_215750.jpg" RenderTransformOrigin="0.5,0.5">
-            <Image.RenderTransform>
+            </TextBlock.RenderTransform>
+        </TextBlock>
+        <Calendar x:Name="Calendar_cal" Margin="0,85,0,0" VerticalAlignment="Top" Height="165" Width="170" HorizontalAlignment="Center"/>
+        <TextBlock x:Name="werwars_tbl" Margin="100,265,101,0" TextWrapping="Wrap" Text="Wer hat geschuftet?" VerticalAlignment="Top" FontFamily="Bahnschrift Condensed" FontSize="18" Height="30" Width="119"/>
+        <TextBlock x:Name="wannImCal_tbl" Margin="87,63,85,0" TextWrapping="Wrap" Text="Wann wurde geschafft?" VerticalAlignment="Top" FontFamily="Bahnschrift SemiBold SemiCondensed" FontSize="16" Height="15" Width="148" RenderTransformOrigin="0.5,0.5">
+            <TextBlock.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
                     <SkewTransform/>
-                    <RotateTransform Angle="90.445"/>
-                    <TranslateTransform/>
+                    <RotateTransform Angle="0.313"/>
+                    <TranslateTransform X="-0.207" Y="-0.063"/>
                 </TransformGroup>
-            </Image.RenderTransform>
-        </Image>
+            </TextBlock.RenderTransform>
+        </TextBlock>
+        <RadioButton x:Name="Feli_radbt" Content="Felicitas" Margin="80,305,160,0" VerticalAlignment="Top" Checked="Feli_radbt_Checked" RenderTransformOrigin="-0.256,-1.089" Height="20" FontFamily="Bahnschrift Condensed" FontSize="16"/>
+        <RadioButton x:Name="Pauli_radbt" Content="Paulinus" Margin="160,305,80,0" VerticalAlignment="Top" Checked="Pauli_radbt_Checked" Height="20" FontFamily="Bahnschrift Condensed" FontSize="16"/>
+        <Button x:Name="Berechnen_btn" Content="Einzahlen!" Margin="100,365,100,0" VerticalAlignment="Top" Click="Berechnen_btn_Click" Height="35"/>
+        <Button x:Name="AbfrageGuthaben_btn" Content="Guthaben Abfragen" Margin="100,405,100,0" VerticalAlignment="Top" Click="AbfrageGuthaben_btn_Click" Height="40"/>
+        <Button x:Name="AbhebenGuthaben_btn" Content="Guthaben Abheben" Margin="100,455,100,0" VerticalAlignment="Top" Click="AbhebenGuthaben_btn_Click" Height="37"/>
+        <TextBox x:Name="Abhebebox_tb" Margin="100,505,100,0" TextWrapping="Wrap" Text="0.00" VerticalAlignment="Top" IsEnabled="False" Height="30"/>
+        <Button x:Name="Buchen_btn" Content="Abheben!" Margin="100,545,100,0" VerticalAlignment="Top" RenderTransformOrigin="0.25,0.319" IsEnabled="True" Click="Buchen_btn_Click" Height="35"/>
 
     </Grid>
 </Window>
