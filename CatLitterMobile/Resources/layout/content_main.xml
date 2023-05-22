@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_main">
+    <TextView
+        android:text="Katzenklo mobile V1"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1"
+        android:layout_marginLeft="90.0dp"
+        android:layout_marginTop="15.0dp"
+/>
+    <RadioButton
+        android:text="Feli"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="30dp"
+        android:id="@+id/Feli_radbt" />
+    <RadioButton
+        android:text="Pauli"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        androuid:layout_marginRight="0dp"
+        android:layout_marginLeft="220dp"
+        android:layout_padding="10dp"
+        android:id="@+id/Pauli_radbt"
+         />
+    <CheckBox
+        android:text="Ein Klo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/textView1"
+        android:layout_below="@+id/Feli_radbt"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="30dp"
+        android:id="@+id/EinKlo_chkbx" />
+    <CheckBox
+        android:text="Zwei Klos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Pauli_radbt"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="60dp"
+        android:layout_marginRight="73dp"
+        android:id="@+id/ZweiKlo_chkbx" />
+    <EditText
+        android:inputType="date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText1"
+        android:layout_below="@id/EinKlo_chkbx"
+        android:layout_marginTop="200dp"
+        
+      />
+    <Button
+        android:text="Speichern"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editText1"
+        android:layout_marginTop="250dp"
+        android:layout_marginLeft="100dp"
+        android:id="@+id/button1" />
+
+</RelativeLayout>
