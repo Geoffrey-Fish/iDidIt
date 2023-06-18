@@ -5,20 +5,11 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="20191228_105036.jpg" />
-    <None Remove="20221121_215750.jpg" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="20191228_105036.jpg" />
-    <Resource Include="20221121_215750.jpg" />
   </ItemGroup>
 
 </Project>

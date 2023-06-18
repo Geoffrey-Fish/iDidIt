@@ -5,45 +5,68 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CatLitterMoneyBox"
         mc:Ignorable="d"
-        Title="MainWindow" AutomationProperties.HelpText="Katzenklo" Height="660" Width="320">
-    <Grid HorizontalAlignment="Center" Width="320" Height="646" VerticalAlignment="Center">
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <CheckBox x:Name="Kloeins_cb" Content="Ein Klo" Margin="80,330,150,0" VerticalAlignment="Top" Checked="Kloeins_cb_Checked" Height="20" Width="90" FontFamily="Bahnschrift Light" FontSize="14" RenderTransformOrigin="0.833,-0.749"/>
-        <CheckBox x:Name="Klozwei_cb" Content="Beide Klos" Margin="160,330,70,0" VerticalAlignment="Top" Checked="Klozwei_cb_Checked" Height="20" Width="90" FontFamily="Bahnschrift Light" FontSize="14"/>
-        <TextBlock Margin="50,24,45,0" TextWrapping="Wrap" Text="KatzenKlo Sparschwein" VerticalAlignment="Top" FontFamily="Bahnschrift SemiBold SemiCondensed" FontSize="24" Height="23" Width="225" RenderTransformOrigin="0.5,0.5">
-            <TextBlock.RenderTransform>
+        Title="MainWindow" AutomationProperties.HelpText="Katzenklo" Height="670" Width="625">
+    <Grid>
+        <Grid RenderTransformOrigin="0.512,0.465">
+            <Grid.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
                     <SkewTransform/>
-                    <RotateTransform Angle="0.313"/>
-                    <TranslateTransform X="0.146" Y="0.002"/>
+                    <RotateTransform Angle="0.102"/>
+                    <TranslateTransform/>
                 </TransformGroup>
-            </TextBlock.RenderTransform>
-        </TextBlock>
-        <Calendar x:Name="Calendar_cal" Margin="0,85,0,0" VerticalAlignment="Top" Height="165" Width="170" HorizontalAlignment="Center"/>
-        <TextBlock x:Name="werwars_tbl" Margin="100,265,101,0" TextWrapping="Wrap" Text="Wer hat geschuftet?" VerticalAlignment="Top" FontFamily="Bahnschrift Condensed" FontSize="18" Height="30" Width="119"/>
-        <TextBlock x:Name="wannImCal_tbl" Margin="87,63,85,0" TextWrapping="Wrap" Text="Wann wurde geschafft?" VerticalAlignment="Top" FontFamily="Bahnschrift SemiBold SemiCondensed" FontSize="16" Height="15" Width="148" RenderTransformOrigin="0.5,0.5">
-            <TextBlock.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="0.313"/>
-                    <TranslateTransform X="-0.207" Y="-0.063"/>
-                </TransformGroup>
-            </TextBlock.RenderTransform>
-        </TextBlock>
-        <RadioButton x:Name="Feli_radbt" Content="Felicitas" Margin="80,305,160,0" VerticalAlignment="Top" Checked="Feli_radbt_Checked" RenderTransformOrigin="-0.256,-1.089" Height="20" FontFamily="Bahnschrift Condensed" FontSize="16"/>
-        <RadioButton x:Name="Pauli_radbt" Content="Paulinus" Margin="160,305,80,0" VerticalAlignment="Top" Checked="Pauli_radbt_Checked" Height="20" FontFamily="Bahnschrift Condensed" FontSize="16"/>
-        <Button x:Name="Berechnen_btn" Content="Einzahlen!" Margin="100,365,100,0" VerticalAlignment="Top" Click="Berechnen_btn_Click" Height="35"/>
-        <Button x:Name="AbfrageGuthaben_btn" Content="Guthaben Abfragen" Margin="100,405,100,0" VerticalAlignment="Top" Click="AbfrageGuthaben_btn_Click" Height="40"/>
-        <Button x:Name="AbhebenGuthaben_btn" Content="Guthaben Abheben" Margin="100,455,100,0" VerticalAlignment="Top" Click="AbhebenGuthaben_btn_Click" Height="37"/>
-        <TextBox x:Name="Abhebebox_tb" Margin="100,505,100,0" TextWrapping="Wrap" Text="0.00" VerticalAlignment="Top" IsEnabled="False" Height="30"/>
-        <Button x:Name="Buchen_btn" Content="Abheben!" Margin="100,545,100,0" VerticalAlignment="Top" RenderTransformOrigin="0.25,0.319" IsEnabled="True" Click="Buchen_btn_Click" Height="35"/>
+            </Grid.RenderTransform>
+            <CheckBox x:Name="Kloeins_cb" Content="Ein Klo" Checked="Kloeins_cb_Checked" FontFamily="Bahnschrift Light" FontSize="14" RenderTransformOrigin="0.833,-0.749" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="360,145,0,0"/>
+            <CheckBox x:Name="Klozwei_cb" Content="Beide Klos" Checked="Klozwei_cb_Checked" FontFamily="Bahnschrift Light" FontSize="14" RenderTransformOrigin="0.742,0.495" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="360,175,0,0"/>
+            <TextBlock Margin="29,14,0,0" TextWrapping="Wrap" Text="KatzenKlo Sparschwein" VerticalAlignment="Top" FontFamily="Bahnschrift SemiBold SemiCondensed" FontSize="24" Height="23" Width="226" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left">
+                <TextBlock.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="0.313"/>
+                        <TranslateTransform X="0.146" Y="0.002"/>
+                    </TransformGroup>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <Calendar x:Name="Calendar_cal" Margin="45,88,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <TextBlock x:Name="werwars_tbl" TextWrapping="Wrap" Text="Wer hat geschuftet?" FontFamily="Bahnschrift Condensed" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="360,47,0,0"/>
+            <TextBlock x:Name="wannImCal_tbl" TextWrapping="Wrap" Text="Wann wurde geschafft?" FontFamily="Bahnschrift SemiBold SemiCondensed" FontSize="16" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="57,48,0,0">
+                <TextBlock.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="0.313"/>
+                        <TranslateTransform X="-0.207" Y="-0.063"/>
+                    </TransformGroup>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <Button x:Name="JobEintragen_btn" Content="Job eintragen" Click="JobBuchen_btn_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="360,242,0,0"/>
+            <Button x:Name="GuthabenAbfragen_btn" Content="Guthaben Abfragen" Click="AbfrageGuthaben_btn_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="45,303,0,0"/>
+            <Button x:Name="GuthabenAbheben_btn" Content="Guthaben Abheben" Click="AbhebenGuthaben_btn_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="45,347,0,0"/>
+            <TextBox x:Name="Abhebebox_tbx" TextWrapping="Wrap" Text="0.00" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="180,303,0,0" Height="18" Width="51"/>
+            <Button x:Name="GuthabenAusbuchen_btn" Content="Abheben!" RenderTransformOrigin="0.25,0.319" IsEnabled="True" Click="Abheben_btn_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="180,347,0,0"/>
+            <Button x:Name="UserAnlegen_btn" Content="User anlegen" Click="UserAnlegen_btn_Click" Margin="361,312,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Button x:Name="UserLöschen_btn" Content="User löschen" Click="UserLöschen_btn_Click" Margin="488,315,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <UIElement.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </UIElement.RenderTransform>
+            </Button>
+            <ComboBox x:Name="User_drpdwn" DisplayMemberPath="Name" SelectedItem="{Binding SelectedAccount}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="127" Margin="360,91,0,0"/>
+            <CheckBox x:Name="BonusLottery_cb" Content="Bonus Lotterie" Checked="BonusLottery_cb_Checked" FontFamily="Bahnschrift Light" FontSize="14" RenderTransformOrigin="0.742,0.495" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="360,204,0,0"/>
+            <Button x:Name="SonderEinzahlung_btn" Content="Sonderzahlung" RenderTransformOrigin="0.25,0.319" IsEnabled="True" Click="SonderEinzahlung_btn_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="45,388,0,0"/>
+            <Button x:Name="LohnAnpassen_btn" Content="Lohn anpassen" RenderTransformOrigin="0.25,0.319" IsEnabled="True" Click="LohnAnpassen_btn_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="45,427,0,0"/>
+            <Button x:Name="ValueChange_btn" Content="Ändern!" HorizontalAlignment="Left" Margin="180,429,0,0" VerticalAlignment="Top" Click="ValueChange_btn_Click"/>
+            <TextBox x:Name="ValueChange_tbx" HorizontalAlignment="Left" Margin="180,399,0,0" TextWrapping="Wrap" Text="0,00" VerticalAlignment="Top" Width="54"/>
+            <Label x:Name="UserCreationName_lbl" Content="Username:" HorizontalAlignment="Left" Margin="363,369,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.548,1.344"/>
+            <TextBox x:Name="UserCreationName_tbx" HorizontalAlignment="Left" Margin="448,374,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Button x:Name="UserManipulation_btn" HorizontalAlignment="Left" Margin="407,403,0,0" VerticalAlignment="Top" Height="27" Width="114" Content="Eintrag speichern" Click="UserManipulation_btn_Click"/>
+            <Label x:Name="UserVorgang_lbl" Content="Label" HorizontalAlignment="Left" Margin="440,344,0,0" VerticalAlignment="Top"/>
 
+        </Grid>
     </Grid>
 </Window>
