@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarParking", "CarParking.csproj", "{26033E3F-AB20-4234-B915-5C63F99AFB79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vehicles", "Vehicles\Vehicles.csproj", "{7BFBB498-8F9A-46A3-8EF9-3A55037F8C3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarParking.Tests", "CarParking.Tests\CarParking.Tests.csproj", "{F8B742E1-DE9C-414D-9AC8-1D62E61214B8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{26033E3F-AB20-4234-B915-5C63F99AFB79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26033E3F-AB20-4234-B915-5C63F99AFB79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26033E3F-AB20-4234-B915-5C63F99AFB79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26033E3F-AB20-4234-B915-5C63F99AFB79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BFBB498-8F9A-46A3-8EF9-3A55037F8C3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BFBB498-8F9A-46A3-8EF9-3A55037F8C3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BFBB498-8F9A-46A3-8EF9-3A55037F8C3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BFBB498-8F9A-46A3-8EF9-3A55037F8C3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8B742E1-DE9C-414D-9AC8-1D62E61214B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8B742E1-DE9C-414D-9AC8-1D62E61214B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8B742E1-DE9C-414D-9AC8-1D62E61214B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8B742E1-DE9C-414D-9AC8-1D62E61214B8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
