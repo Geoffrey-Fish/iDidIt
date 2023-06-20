@@ -2,12 +2,15 @@
 {
     public class Truck : Vehicle
     {
-        public Truck(string name, string type, int velocity, double weight, int passengers, int wheels,
-            string licencePlate, double maxLoad, int kiloWatts, int fuelTank, int consumptionPerHour) : base(name, type,
-            velocity, weight, passengers)
+        public Truck(string name, string type, int velocity,
+            double weight, int passengers,string color, int wheels, 
+            double maxLoad, int kiloWatts, int fuelTank,
+            int consumptionPerHour) : 
+            base(name, type, velocity, weight, passengers)
         {
+            Color = color;
             Wheels = wheels;
-            LicencePlate = licencePlate;
+            LicencePlate = LicencePlateGenerator.LicencePlateGeneration();
             MaxLoad = maxLoad;
             KiloWatts = kiloWatts;
             FuelTank = fuelTank;
@@ -26,7 +29,7 @@
         public override int Velocity { get; set; }
         public override double Weight { get; set; }
         public override int Passengers { get; set; }
-
+        public string Color { get; set; }
         /// <summary>
         ///     Many Wheels go round and round
         /// </summary>

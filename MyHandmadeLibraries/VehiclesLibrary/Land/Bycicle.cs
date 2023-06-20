@@ -2,9 +2,12 @@
 {
     public class Bycicle : Vehicle
     {
-        public Bycicle(string name, string type, int velocity, double weight, int passengers, bool pedelec) : base(name,
-            type, velocity, weight, passengers)
+        public Bycicle(string name, string type, int velocity,
+            double weight, int passengers,
+            string color,bool pedelec) :
+            base(name, type, velocity, weight, passengers)
         {
+            Color = color;
             Pedelec = pedelec;
         }
 
@@ -20,7 +23,7 @@
         public override int Velocity { get; set; }
         public override double Weight { get; set; }
         public override int Passengers { get; set; }
-
+public string Color { get; set; }
         /// <summary>
         ///     Is it a mans bike or Grannys?
         /// </summary>

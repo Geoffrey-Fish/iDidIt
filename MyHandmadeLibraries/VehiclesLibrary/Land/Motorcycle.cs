@@ -2,12 +2,14 @@
 {
     public class Motorcycle : Vehicle
     {
-        public Motorcycle(string name, string type, int velocity, double weight, int passengers, string color,
-            string licencePlate, int wheels, int kiloWatts, int fuelTank, int consumptionPerHour) : base(name, type,
+        public Motorcycle(string name, string type, int velocity,
+            double weight, int passengers, string color,
+            int wheels, int kiloWatts, int fuelTank,
+            int consumptionPerHour) : base(name, type,
             velocity, weight, passengers)
         {
             Color = color;
-            LicencePlate = licencePlate;
+            LicencePlate  = LicencePlateGenerator.LicencePlateGeneration();
             Wheels = wheels;
             KiloWatts = kiloWatts;
             FuelTank = fuelTank;

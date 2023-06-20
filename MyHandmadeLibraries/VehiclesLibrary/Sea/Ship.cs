@@ -2,9 +2,14 @@
 {
     public class Ship : Vehicle
     {
-        public Ship(string name, string type, int velocity, double weight, int passengers, double maxLoad,
-            int kiloWatts, int fuelTank, int consumptionPerHour) : base(name, type, velocity, weight, passengers)
+        public Ship(string name, string type, 
+            int velocity, double weight, int passengers,
+            string color, double maxLoad,
+            int kiloWatts, int fuelTank,
+            int consumptionPerHour) :
+            base(name, type, velocity, weight, passengers)
         {
+            Color = Color;
             MaxLoad = maxLoad;
             KiloWatts = kiloWatts;
             FuelTank = fuelTank;
@@ -22,7 +27,8 @@
         public override string Type { get; set; }
         public override int Velocity { get; set; }
         public override double Weight { get; set; }
-        public override int Passengers { get; set; }
+        public override int Passengers { get; set;}
+        public string Color { get; set; }
 
         /// <summary>
         ///     How much the Behemoth moves

@@ -2,8 +2,11 @@
 {
     public class Car : Vehicle
     {
-        public Car(string name, string type, int velocity, double weight, int passengers, string color, int wheels,
-             int kiloWatts, int fuelTank, int consumptionPerHour) : base(name, type, velocity,
+        public Car(string name, string type,
+            int velocity, double weight,
+            int passengers, string color,
+            int wheels,
+            int kiloWatts, int fuelTank, int consumptionPerHour) : base(name, type, velocity,
             weight, passengers)
         {
             Color = color;

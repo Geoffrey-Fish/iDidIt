@@ -4,9 +4,13 @@ namespace Vehicles.Space
 {
     public class Satellite : Vehicle
     {
-        public Satellite(string name, string type, int velocity, double weight, int passengers, int maxAltitude,
-            int kiloWatts, int fuelTank, int consumptionPerHour) : base(name, type, velocity, weight, passengers)
+        public Satellite(string name, string type,
+            int velocity, double weight, int passengers,
+            string color, int maxAltitude,
+            int kiloWatts, int fuelTank, int consumptionPerHour) :
+            base(name, type, velocity, weight, passengers)
         {
+            Color = color;
             MaxAltitude = maxAltitude;
             KiloWatts = kiloWatts;
             FuelTank = fuelTank;
@@ -18,7 +22,7 @@ namespace Vehicles.Space
         public override int Velocity { get; set; }
         public override double Weight { get; set; }
         public override int Passengers { get; set; }
-
+public string Color { get; set; }
         /// <summary>
         ///     How high is too high? Yes
         /// </summary>
