@@ -3,11 +3,134 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CarParking"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        <StackPanel Margin="10"/>
-            <TextBlock Text="Parkhouse simulator V0.5"/>
+        Title="MainWindow" Height="400" Width="525">
+
+    <!--Main Grid Layout-->
+    <Grid Name="MainGrid" Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+
+        <!--Top left Corner Design-->
+        <Grid Name="TopLeftGrid" Grid.Row="0" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="7*" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Parkhouse Simulator V0.5" FontSize="16" FontWeight="Black"
+                       TextAlignment="Center" Background="SeaShell" />
+            <TextBlock Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="2" TextAlignment="Center" TextWrapping="Wrap" Background="Gainsboro">
+                 Definition of this app and whatnot &#x0a; 
+                 You can create a Parkhouse, &#x0a;
+                 park random generated Cars, Motorcycles &#x0a;
+                 and Trucks in it.  &#x0a;
+                 You can drive out again, &#x0a;
+                 search for Vehicles by &#x0a;
+                 -Type, &#x0a;
+                 -Licence Plate &#x0a;
+                 -Lot number. &#x0a;
+            </TextBlock>
+        </Grid>
+
+
+        <!--Top right Corner Design-->
+        <Grid Name="TopRightGrid" Grid.Row="0" Grid.Column="1" Background="Cornsilk">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Background="SeaShell" Text="Define your Parkhouse" FontSize=" 16"
+                       FontWeight="Black" TextAlignment="Center" />
+            <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="5,0,0,0">Parking lots</TextBlock>
+            <TextBox Name="lotAmount_tbx" Grid.Row="1" Grid.Column="1" Width="100" Height="20" HorizontalAlignment="Left" />
+            <TextBlock Grid.Row="2" VerticalAlignment="Center" Margin="5,0,0,0">Price per hour</TextBlock>
+            <TextBox Name="price_tbx" Grid.Row="2" Grid.Column="1" Width="100" Height="20" HorizontalAlignment="Left"/>
+            <Button Name="createPhouse_btn" Grid.Row="3" Grid.ColumnSpan="2" Width="201" Height="40"
+                    Background="Linen" FontSize="16" FontWeight="Black" Click="CreatePhouse_btn_OnClick" >Create Parkhouse</Button>
+            <TextBlock Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="5,0,0,0">Load recent Parkhouse</TextBlock>
+            <Button Name="loadLastPh_btn" Grid.Row="4" Grid.Column="1" Width="78" Height="30" Background="Linen"
+                    FontSize="14" FontWeight="Black" Click="LoadLastPh_btn_OnClick">Load</Button>
+        </Grid>
+
+
+        <!--Bottom left Corner Design-->
+        <Grid Name="BottomLeftGrid"  Grid.Row="1" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+           <!-- Car Motorcycle Truck --> 
+            <TextBlock Grid.ColumnSpan="3" Background="LightBlue" TextAlignment="Center" FontSize="16" FontWeight="Black">Vehicle Control</TextBlock>
+           <!-- Left buttons-->
+            <TextBlock Grid.Row="1" Grid.Column="0" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="11" TextWrapping="Wrap" Margin="5" Padding="3">Please select the Vehicle</TextBlock>
+            <Button Name="car_btn" Grid.Row="2" Click="Car_btn_OnClick">Car</Button>
+            <Button Name="MoCy_btn" Grid.Row="3" Click="MoCy_btn_OnClick">MotorCycle</Button>
+            <Button Name="truck_btn" Grid.Row="4" Click="Truck_btn_OnClick">Truck</Button>
+           <!--Right Infos -->
+           <TextBlock Grid.Row="1" Grid.Column="1" Margin="5,0,0,0">Name</TextBlock>
+           <TextBlock Grid.Row="2" Grid.Column="1" Margin="5,0,0,0">Type</TextBlock>
+           <TextBlock Grid.Row="3" Grid.Column="1" Margin="5,0,0,0" TextWrapping="Wrap">Licence Plate Nr.</TextBlock>
+           <TextBlock Grid.Row="4" Grid.Column="1" Margin="5,0,0,0">Model</TextBlock>
+           <TextBox Name="name_tbx" Grid.Row="1" Grid.Column="2" Height="20" Margin="5"></TextBox>
+           <TextBox Grid.Row="2" Name="type_tbx" Grid.Column="2" Height="20" Margin="5"></TextBox>
+           <TextBox Grid.Row="3" Name="licence_tbx" Grid.Column="2" Height="20" Margin="5"></TextBox>
+           <TextBox Grid.Row="4" Name="model_tbx" Grid.Column="2" Height="20" Margin="5"></TextBox>
+        </Grid>
+
+
+        <!-- Bottom right Corner Design-->
+        <Grid Name="BottomRightGrid" Grid.Row="1" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Grid.ColumnSpan="2" TextAlignment="Center" FontSize="16" FontWeight="Black" Background="LightBlue">Actions</TextBlock>
+            <TextBox Name="searchLicence_tbx" Grid.Row="1" Grid.Column="0" Height="20"/>
+            <TextBox Name="searchType_tbx" Grid.Row="2"  Grid.Column="0" Height="20"/>
+            <TextBox Name="searchLot_tbx" Grid.Row="3" Grid.Column="0" Height="20"/>
+           <Button Name="searchLicence_btn" Grid.Row="1" Grid.Column="1" Height="30" Width="140" Click="SearchLicence_btn_OnClick"> Search by LicencePlate</Button> 
+           <Button Name="searchType_btn" Grid.Row="2" Grid.Column="1" Height="30" Width="140" Click="SearchType_btn_OnClick"> Search by Vehicle Type</Button> 
+           <Button Name="searchLot_btn" Grid.Row="3" Grid.Column="1" Height="30" Width="140" Click="SearchLot_btn_OnClick"> Search by LotNumber</Button> 
+           <Button Name="parkIn_btn" Grid.Row="4" Grid.Column="0" Height="30" Width="100" Click="ParkIn_btn_OnClick"> Park in</Button> 
+           <Button Name="driveOut_btn" Grid.Row="4" Grid.Column="1" Height="30" Width="140" Click="DriveOut_btn_OnClick"> Drive out</Button> 
+            
+        </Grid>
+
+
     </Grid>
 </Window>
