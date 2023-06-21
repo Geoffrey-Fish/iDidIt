@@ -10,6 +10,7 @@ namespace CarParking
 {
     public class ParkHouse
     {
+        #region stats
         /// <summary>
         /// Status Light if void job successfull
         /// </summary>
@@ -42,7 +43,30 @@ namespace CarParking
         /// List of all parked vehicles
         /// </summary>
         private Vehicle[] parkingLots;
-        /// <summary>
+       #endregion
+
+       /// <summary>
+       /// Empty stub for loading from json save
+       /// </summary>
+       public ParkHouse()
+       {
+       }
+
+       public static ParkHouse LoadParkHouse()
+       {
+           string path = "..\\parkHouseData.json";
+           if (File.Exists(path))
+           {
+               string json = File.ReadAllText(path);
+               return JsonConvert.DeserializeObject<ParkHouse>(json);
+           }
+           else
+           {
+               return null;
+           }
+       }
+
+       /// <summary>
         /// New ParkHouse
         /// </summary>
         /// <param name="Lots">Amount of Lots available</param>
@@ -53,10 +77,12 @@ namespace CarParking
             {
                 parkingLots[i] = null;
             }
-            //TotalLots = Lots;
-            //FreeLots = Lots;
-            //UsedLots = 0;
-            SaveAllData(parkingLots);
+            TotalLots = Lots;
+            FreeLots = Lots;
+            UsedLots = 0;
+            OkMessage = $"Parkhouse with {Lots.ToString()} successfull created.";
+            OkLight = true;
+            SaveAllData();
         }
         
         /// <summary>
@@ -77,7 +103,9 @@ namespace CarParking
                 parkingLots[searchFreeLot] = vehicle as Motorcycle;
             }
             OkLight = true;
-            SaveAllData(parkingLots);
+            FreeLots--;
+            UsedLots++;
+            SaveAllData();
             //OkMessage = "Is parked.";
             OkMessage = $"{vehicle.Name} parked at Lot Number: {searchFreeLot.ToString()}.";
         }
@@ -94,7 +122,9 @@ namespace CarParking
             }
             parkingLots[lot] = null;
             OkLight = true;
-            SaveAllData(parkingLots);
+            FreeLots++;
+            UsedLots--;
+            SaveAllData();
         }
 
         /// <summary>
@@ -185,17 +215,18 @@ namespace CarParking
 
         /// <summary>
         /// Save the state of the Parkhouse
+        /// idea: this is a test if i can save that parkhouse itself
         /// </summary>
-        public void SaveAllData(Vehicle[] parkingLots)
+        public void SaveAllData()//Vehicle[] parkingLots)
         {
-            string path = "..\\parkingData.json";
+            string path = "..\\parkHouseData.json";
             try
             {
                 var serializer = new JsonSerializer();
                 using (StreamWriter sw = new StreamWriter(path))
                 using (JsonWriter writer = new JsonTextWriter(sw))
                 {
-                    serializer.Serialize(writer, parkingLots);
+                    serializer.Serialize(writer, this);
                 }
                 OkMessage = "Data saved successfully.";
             }
