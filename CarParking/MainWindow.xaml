@@ -165,11 +165,12 @@
                        FontSize="16" FontWeight="Black" Background="LightBlue" >
                 Actions
             </TextBlock>
-            <TextBox Name="searchLicence_tbx" Grid.Row="1" Grid.Column="0"
+            
+            <ComboBox Name="searchLicence_cobx" Grid.Row="1" Grid.Column="0"
                      Height="20" />
-            <TextBox Name="searchType_tbx" Grid.Row="2" Grid.Column="0"
-                     Height="20" />
-            <TextBox Name="searchLot_tbx" Grid.Row="3" Grid.Column="0"
+            <ComboBox Name="searchType_cobx" Grid.Row="2" Grid.Column="0"
+                      Height="20"  />
+            <ComboBox Name="searchLot_cobx" Grid.Row="3" Grid.Column="0"
                      Height="20" />
             <Button Name="searchLicence_btn" Grid.Row="1" Grid.Column="1"
                     Height="30" Width="140" Click="SearchLicence_btn_OnClick" >
@@ -177,7 +178,7 @@
             </Button>
             <Button Name="searchType_btn" Grid.Row="2" Grid.Column="1"
                     Height="30" Width="140" Click="SearchType_btn_OnClick" >
-                Search by Vehicle Type
+                Search by Model
             </Button>
             <Button Name="searchLot_btn" Grid.Row="3" Grid.Column="1"
                     Height="30" Width="140" Click="SearchLot_btn_OnClick" >
@@ -222,11 +223,15 @@
                     </WrapPanel>
                 
             </Border>
-            <TextBox Name="resultText_tbx" Grid.Row="1" Grid.ColumnSpan="2"></TextBox> <!-- Results from operations-->
-            <Button Name="resultReset_btn" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Width="120" Height="30" Focusable="False" Click="ResultReset_btn_OnClick">Reset Querry</Button>
-            <TextBox  Name="errorText_tbx" Grid.Row="2" Grid.ColumnSpan="2"></TextBox> <!-- Error informations-->
-            <Button Name="errorReset_btn" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Width="120" Height="30" Focusable="False" Click="ErrorReset_btn_OnClick">Reset Error</Button>
-            <Button Name="clearVehicleDataWindows_btn" Grid.Row="3" Width="120" Height="30" Click="ClearVehicleDataWindows_btn_OnClick">Reset Vehicle</Button>
+            <TextBox Name="resultText_tbx" Grid.Row="1" Grid.ColumnSpan="2" Focusable="False"/> <!-- Results from operations-->
+            <Button Name="resultReset_btn" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Width="120" Height="30" Focusable="False" Click="ResultReset_btn_OnClick" Background="white" Foreground="white" BorderThickness="0">Reset Querry</Button>
+            <TextBox  Name="errorText_tbx" Grid.Row="2" Grid.ColumnSpan="2" Focusable="False"/> <!-- Error informations-->
+            <Button Name="errorReset_btn" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Width="120" Height="30" Focusable="False" Click="ErrorReset_btn_OnClick" Background="white" Foreground="white" BorderThickness="0">Reset Error</Button>
+            <TextBlock Grid.Row="3" Grid.Column="0" FontSize="12" FontWeight="Black" VerticalAlignment="Center">Free Lots: </TextBlock>
+            <TextBox Name="freeTicker_tbx" Grid.Row="3" Grid.Column="0" Focusable="False" Width="50"/>
+            <TextBlock Grid.Row="3" Grid.Column="1" FontSize="12" FontWeight="Black" VerticalAlignment="Center">Used Lots: </TextBlock>
+            <TextBox Name="usedTicker_tbx" Grid.Row="3" Grid.Column="1" Focusable="False" Width="50"/>
+            <Button Name="clearVehicleDataWindows_btn" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Width="120" Height="30" Click="ClearVehicleDataWindows_btn_OnClick">Clear all</Button>
             <!-- todo: labels for the current lot count free and used -->
         </Grid>
 

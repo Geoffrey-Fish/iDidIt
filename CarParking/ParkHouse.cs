@@ -1,14 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using System.Net;
+using System.Runtime.CompilerServices;
 using Vehicles;
 using Vehicles.Land;
 using Newtonsoft.Json;
 
 namespace CarParking
 {
-    public class ParkHouse
+    public class ParkHouse :INotifyPropertyChanged
     {
         #region stats
         /// <summary>
@@ -34,15 +36,28 @@ namespace CarParking
         /// <summary>
         /// Free Lots
         /// </summary>
-        private int FreeLots { get; set; }
+        public int FreeLots { get; set; }
         /// <summary>
         /// Used Lots
         /// </summary>
-        private int UsedLots { get; set; }
+        public int UsedLots { get; set; }
+        /// <summary>
+        /// Invented for the logic of the dropdown list in the ui
+        /// </summary>
+        public List<int> UsedLotNumbers { get; set; }
+/// <summary>
+/// Workaround for dropboxes
+/// </summary>
+        public List<string> LicencePlates { get; set; }
+///Workaround for Dropboxes        
+public List<string> Models { get; set; }
+
         /// <summary>
         /// List of all parked vehicles
         /// </summary>
-        private Vehicle[] parkingLots;
+        public Vehicle[] parkingLots;
+    
+        
        #endregion
 
        /// <summary>
@@ -82,6 +97,9 @@ namespace CarParking
             UsedLots = 0;
             OkMessage = $"Parkhouse with {Lots.ToString()} successfull created.";
             OkLight = true;
+            UsedLotNumbers = new List<int>();
+            LicencePlates = new List<string>();
+            Models = new List<string>();
             SaveAllData();
         }
         
@@ -92,38 +110,65 @@ namespace CarParking
         /// <returns>string if success, else error</returns>
         public void Parking(Vehicle vehicle)
         {
-            if(IsHouseFull()) ErrorMessage = "Error, full house!";
-            int searchFreeLot = RandomLotChooser(); //search random lot
-            if (vehicle.GetType() == typeof(Car))
+            if (IsHouseFull())
             {
-                parkingLots[searchFreeLot] = vehicle as Car;
+                ErrorLight = true;
+                ErrorMessage = "Error, full house!";
+                return;
             }
-            else if (vehicle.GetType() == typeof(Motorcycle))
+            int searchFreeLot = RandomLotChooser(); //search random lot
+            if (vehicle is Car car)
             {
-                parkingLots[searchFreeLot] = vehicle as Motorcycle;
+                parkingLots[searchFreeLot] = car;
+                Models.Add(car.Type);
+                LicencePlates.Add(car.LicencePlate);
+            }
+            else if (vehicle is Motorcycle mo)
+            {
+                parkingLots[searchFreeLot] = mo;
+                Models.Add(mo.Type);
+                LicencePlates.Add(mo.LicencePlate);
+            }
+            else if (vehicle is Truck truck)
+            {
+                parkingLots[searchFreeLot] = truck;
+                Models.Add(truck.Type);
+                LicencePlates.Add(truck.LicencePlate);
             }
             OkLight = true;
             FreeLots--;
             UsedLots++;
+            UsedLotNumbers.Add(searchFreeLot);
+            
             SaveAllData();
-            //OkMessage = "Is parked.";
             OkMessage = $"{vehicle.Name} parked at Lot Number: {searchFreeLot.ToString()}.";
         }
 
         /// <summary>
         /// remove car from lot and give it free again
         /// </summary>
-        public void Leaving(int lot)
+        public void Leaving(Vehicle vehicle)
         {
-            if (IsLotFree(lot)) 
-            {
-                ErrorLight = true;
-                ErrorMessage = "Lot is allready free";
-            }
+            int lot = Array.IndexOf(parkingLots, vehicle);
+
+            // todo: implement here logic for money cost
             parkingLots[lot] = null;
             OkLight = true;
+            OkMessage = $"{vehicle.Name} {vehicle.Type} successfully gone.";
             FreeLots++;
             UsedLots--;
+            UsedLotNumbers.Remove(lot);
+            Models.Remove(vehicle.Type);
+            if (vehicle is Car car)
+            {
+                LicencePlates.Remove(car.LicencePlate);
+            }else if (vehicle is Motorcycle mo)
+            {
+                LicencePlates.Remove(mo.LicencePlate);
+            }else if (vehicle is Truck truck)
+            {
+                LicencePlates.Remove(truck.LicencePlate);
+            }
             SaveAllData();
         }
 
@@ -182,7 +227,7 @@ namespace CarParking
             return 0;
         }
         /// <summary>
-        /// Search for Vehicles by type //Todo: make dropdown with types current in house
+        /// Search for Vehicles by type 
         /// </summary>
         /// <returns>Amount with same type</returns>
         /// <exception cref="NotImplementedException"></exception>
@@ -228,12 +273,20 @@ namespace CarParking
                 {
                     serializer.Serialize(writer, this);
                 }
-                OkMessage = "Data saved successfully.";
             }
             catch (Exception ex)
             {
                 ErrorMessage = $"Error occurred while saving data: {ex.Message}";
             }
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+
     }
 }
