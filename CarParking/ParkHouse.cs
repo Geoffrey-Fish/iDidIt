@@ -1,110 +1,65 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using Newtonsoft.Json;
 using Vehicles;
 using Vehicles.Land;
-using Newtonsoft.Json;
 
 namespace CarParking
 {
-    public class ParkHouse :INotifyPropertyChanged
+    public class ParkHouse : INotifyPropertyChanged
     {
-        #region stats
         /// <summary>
-        /// Status Light if void job successfull
+        ///     Empty stub for loading from json save
         /// </summary>
-        public bool OkLight { get; set; }= false;
-        /// <summary>
-        /// Error Signal for ErrortextBox
-        /// </summary>
-        public bool ErrorLight { get; set; }= false;
-        /// <summary>
-        /// MessageBoard if action is success
-        /// </summary>
-        public string OkMessage = "";
-        /// <summary>
-        /// MessageBoard if Error occours
-        /// </summary>
-        public string ErrorMessage = "";
-        /// <summary>
-        /// Sum of all Lots
-        /// </summary>
-        private int TotalLots { get; set; }
-        /// <summary>
-        /// Free Lots
-        /// </summary>
-        public int FreeLots { get; set; }
-        /// <summary>
-        /// Used Lots
-        /// </summary>
-        public int UsedLots { get; set; }
-        /// <summary>
-        /// Invented for the logic of the dropdown list in the ui
-        /// </summary>
-        public List<int> UsedLotNumbers { get; set; }
-/// <summary>
-/// Workaround for dropboxes
-/// </summary>
-        public List<string> LicencePlates { get; set; }
-///Workaround for Dropboxes        
-public List<string> Models { get; set; }
+        public ParkHouse()
+        {
+        }
 
         /// <summary>
-        /// List of all parked vehicles
-        /// </summary>
-        public Vehicle[] parkingLots;
-    
-        
-       #endregion
-
-       /// <summary>
-       /// Empty stub for loading from json save
-       /// </summary>
-       public ParkHouse()
-       {
-       }
-
-       public static ParkHouse LoadParkHouse()
-       {
-           string path = "..\\parkHouseData.json";
-           if (File.Exists(path))
-           {
-               string json = File.ReadAllText(path);
-               return JsonConvert.DeserializeObject<ParkHouse>(json);
-           }
-           else
-           {
-               return null;
-           }
-       }
-
-       /// <summary>
-        /// New ParkHouse
+        ///     New ParkHouse
         /// </summary>
         /// <param name="Lots">Amount of Lots available</param>
         public ParkHouse(int Lots)
         {
             parkingLots = new Vehicle[Lots]; //New Array for the Vehicles to come
-            for (int i = 0; i < Lots; i++)//Assign null for every lot
-            {
+            for (var i = 0; i < Lots; i++) //Assign null for every lot
                 parkingLots[i] = null;
-            }
             TotalLots = Lots;
             FreeLots = Lots;
             UsedLots = 0;
-            OkMessage = $"Parkhouse with {Lots.ToString()} successfull created.";
+            OkMessage = $"Parkhouse with {Lots.ToString()} Lots successfull created.";
             OkLight = true;
-            UsedLotNumbers = new List<int>();
-            LicencePlates = new List<string>();
-            Models = new List<string>();
+            UsedLotNumbers = new ObservableCollection<int>();
+            LicencePlates = new ObservableCollection<string>();
+            Models = new ObservableCollection<string>();
             SaveAllData();
         }
-        
+
+        #region INotifyPropertyChanged Members
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
+
+        public static ParkHouse LoadParkHouse()
+        {
+            var path = "..\\parkHouseData.json";
+            if (File.Exists(path))
+            {
+                var json = File.ReadAllText(path);
+                return JsonConvert.DeserializeObject<ParkHouse>(json);
+            }
+
+            return null;
+        }
+
         /// <summary>
-        /// Check if there is space
+        ///     Check if there is space
         /// </summary>
         /// <param name="vehicle">the car to park</param>
         /// <returns>string if success, else error</returns>
@@ -116,7 +71,8 @@ public List<string> Models { get; set; }
                 ErrorMessage = "Error, full house!";
                 return;
             }
-            int searchFreeLot = RandomLotChooser(); //search random lot
+
+            var searchFreeLot = RandomLotChooser(); //search random lot
             if (vehicle is Car car)
             {
                 parkingLots[searchFreeLot] = car;
@@ -135,21 +91,22 @@ public List<string> Models { get; set; }
                 Models.Add(truck.Type);
                 LicencePlates.Add(truck.LicencePlate);
             }
+
             OkLight = true;
             FreeLots--;
             UsedLots++;
             UsedLotNumbers.Add(searchFreeLot);
-            
+
             SaveAllData();
             OkMessage = $"{vehicle.Name} parked at Lot Number: {searchFreeLot.ToString()}.";
         }
 
         /// <summary>
-        /// remove car from lot and give it free again
+        ///     remove car from lot and give it free again
         /// </summary>
         public void Leaving(Vehicle vehicle)
         {
-            int lot = Array.IndexOf(parkingLots, vehicle);
+            var lot = Array.IndexOf(parkingLots, vehicle);
 
             // todo: implement here logic for money cost
             parkingLots[lot] = null;
@@ -160,20 +117,15 @@ public List<string> Models { get; set; }
             UsedLotNumbers.Remove(lot);
             Models.Remove(vehicle.Type);
             if (vehicle is Car car)
-            {
                 LicencePlates.Remove(car.LicencePlate);
-            }else if (vehicle is Motorcycle mo)
-            {
+            else if (vehicle is Motorcycle mo)
                 LicencePlates.Remove(mo.LicencePlate);
-            }else if (vehicle is Truck truck)
-            {
-                LicencePlates.Remove(truck.LicencePlate);
-            }
+            else if (vehicle is Truck truck) LicencePlates.Remove(truck.LicencePlate);
             SaveAllData();
         }
 
         /// <summary>
-        /// Checks if Lot is free(for whatever reason)
+        ///     Checks if Lot is free(for whatever reason)
         /// </summary>
         /// <param name="lot"></param>
         /// <returns></returns>
@@ -192,83 +144,83 @@ public List<string> Models { get; set; }
         }
 
         /// <summary>
-        ///Are there free Lots
+        ///     Are there free Lots
         /// </summary>
         /// <returns>amount of free lots</returns>
         public int GetFreeLots()
         {
-            int i = 0;
-            foreach (Vehicle vec in parkingLots)
-            {
+            var i = 0;
+            foreach (var vec in parkingLots)
                 if (vec != null)
-                {
                     i++;
-                }
-            }
 
             return i;
         }
 
         /// <summary>
-        ///Search Vehicle by Plate
+        ///     Search Vehicle by Plate
         /// </summary>
         /// <returns>LotNumber</returns>
         public int GetVehicleByLicencePlate(string licencePlate)
         {
             //GENIUS: That was quite a piece of Work
-            var correctVehicle = parkingLots.FirstOrDefault(vehicle => vehicle is Car car && car.LicencePlate == licencePlate ||
-                                                            vehicle is Motorcycle moto &&
-                                                            moto.LicencePlate == licencePlate);
-            if (correctVehicle != null)
-            {
-                return Array.IndexOf(parkingLots, correctVehicle);
-            }
+            var correctVehicle = parkingLots.FirstOrDefault(vehicle =>
+                (vehicle is Car car && car.LicencePlate == licencePlate) ||
+                (vehicle is Motorcycle moto &&
+                 moto.LicencePlate == licencePlate));
+            if (correctVehicle != null) return Array.IndexOf(parkingLots, correctVehicle);
 
             return 0;
         }
+
         /// <summary>
-        /// Search for Vehicles by type 
+        ///     Search for Vehicles by type
         /// </summary>
         /// <returns>Amount with same type</returns>
         /// <exception cref="NotImplementedException"></exception>
         public int GetVehicleCountByType(string type)
         {
-        return parkingLots.Count(vehicle => vehicle is Car car && car.Type == type ||
-                                                                       vehicle is Motorcycle moto &&
-                                                                       moto.Type == type);
+            return parkingLots.Count(vehicle => (vehicle is Car car && car.Type == type) ||
+                                                (vehicle is Motorcycle moto &&
+                                                 moto.Type == type) ||
+                                                (vehicle is Truck truck && truck.Type == type));
         }
+
         /// <summary>
-        /// For more fun and diversity, choose random parkinglot
+        ///     For more fun and diversity, choose random parkinglot
         /// </summary>
         /// <returns>number of parking lot to use</returns>
         private int RandomLotChooser()
         {
-            Random rng = new Random();
-            int place = rng.Next(TotalLots);
-            place = parkingLots[place] != null ? RandomLotChooser() : place; //Look if chosen plase is free, else reroll until it is
+            var rng = new Random();
+            var place = rng.Next(TotalLots);
+            place = parkingLots[place] != null
+                ? RandomLotChooser()
+                : place; //Look if chosen plase is free, else reroll until it is
             return place;
         }
-/// <summary>
-/// TestSetup, stupid, but works
-/// </summary>
-/// <param name="vec">which vehicle to place</param>
-/// <param name="i">on which position in the Array</param>
+
+        /// <summary>
+        ///     TestSetup, stupid, but works
+        /// </summary>
+        /// <param name="vec">which vehicle to place</param>
+        /// <param name="i">on which position in the Array</param>
         public void TestSetParkLot(Vehicle vec, int i)
         {
             parkingLots[i] = vec;
         }
 
         /// <summary>
-        /// Save the state of the Parkhouse
-        /// idea: this is a test if i can save that parkhouse itself
+        ///     Save the state of the Parkhouse
+        ///     idea: this is a test if i can save that parkhouse itself
         /// </summary>
-        public void SaveAllData()//Vehicle[] parkingLots)
+        public void SaveAllData() //Vehicle[] parkingLots)
         {
-            string path = "..\\parkHouseData.json";
+            var path = "..\\parkHouseData.json";
             try
             {
                 var serializer = new JsonSerializer();
-                using (StreamWriter sw = new StreamWriter(path))
+                using (var sw = new StreamWriter(path))
                 using (JsonWriter writer = new JsonTextWriter(sw))
                 {
                     serializer.Serialize(writer, this);
@@ -280,13 +232,66 @@ public List<string> Models { get; set; }
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        #region stats
 
+        /// <summary>
+        ///     Status Light if void job successfull
+        /// </summary>
+        public bool OkLight { get; set; }
+
+        /// <summary>
+        ///     Error Signal for ErrortextBox
+        /// </summary>
+        public bool ErrorLight { get; set; }
+
+        /// <summary>
+        ///     MessageBoard if action is success
+        /// </summary>
+        public string OkMessage = "";
+
+        /// <summary>
+        ///     MessageBoard if Error occours
+        /// </summary>
+        public string ErrorMessage = "";
+
+        /// <summary>
+        ///     Sum of all Lots
+        /// </summary>
+        private int TotalLots { get; }
+
+        /// <summary>
+        ///     Free Lots
+        /// </summary>
+        public int FreeLots { get; set; }
+
+        /// <summary>
+        ///     Used Lots
+        /// </summary>
+        public int UsedLots { get; set; }
+
+        /// <summary>
+        ///     Invented for the logic of the dropdown list in the ui
+        /// </summary>
+        public ObservableCollection<int> UsedLotNumbers { get; set; }
+
+        /// <summary>
+        ///     Workaround for dropboxes
+        /// </summary>
+        public ObservableCollection<string> LicencePlates { get; set; }
+
+        /// Workaround for Dropboxes
+        public ObservableCollection<string> Models { get; set; }
+
+        /// <summary>
+        ///     List of all parked vehicles
+        /// </summary>
+        public Vehicle[] parkingLots;
+
+        #endregion
     }
 }

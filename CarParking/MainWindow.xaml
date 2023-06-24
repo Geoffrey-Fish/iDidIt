@@ -3,9 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:carParking="clr-namespace:CarParking"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="525" >
-    
+<Window.Resources>
+    <carParking:ParkHouse x:Key="parkHouse"/>
+</Window.Resources>
     <!--Main Grid Layout-->
     <Grid Name="MainGrid" Margin="10" >
         <Grid.ColumnDefinitions>
@@ -133,17 +136,13 @@
             </TextBlock>
             <TextBlock Grid.Row="4" Grid.Column="1" Margin="5,0,0,0" >Model</TextBlock>
             <TextBox Name="name_tbx" Grid.Row="1" Grid.Column="2" Height="20"
-                     Margin="5" >
-            </TextBox>
+                     Margin="5" />
             <TextBox Grid.Row="2" Name="type_tbx" Grid.Column="2" Height="20"
-                     Margin="5" >
-            </TextBox>
+                     Margin="5" />
             <TextBox Grid.Row="3" Name="licence_tbx" Grid.Column="2"
-                     Height="20" Margin="5" >
-            </TextBox>
+                     Height="20" Margin="5" />
             <TextBox Grid.Row="4" Name="model_tbx" Grid.Column="2" Height="20"
-                     Margin="5" >
-            </TextBox>
+                     Margin="5" />
             <!-- todo: implement button to reset all these boxes -->
         </Grid>
 
@@ -165,13 +164,13 @@
                        FontSize="16" FontWeight="Black" Background="LightBlue" >
                 Actions
             </TextBlock>
-            
+
             <ComboBox Name="searchLicence_cobx" Grid.Row="1" Grid.Column="0"
-                     Height="20" />
+                      Height="20" ItemsSource="{Binding Path=LicencePlates, Source={StaticResource parkHouse}}" />
             <ComboBox Name="searchType_cobx" Grid.Row="2" Grid.Column="0"
-                      Height="20"  />
+                      Height="20" />
             <ComboBox Name="searchLot_cobx" Grid.Row="3" Grid.Column="0"
-                     Height="20" />
+                      Height="20" />
             <Button Name="searchLicence_btn" Grid.Row="1" Grid.Column="1"
                     Height="30" Width="140" Click="SearchLicence_btn_OnClick" >
                 Search by LicencePlate
@@ -197,12 +196,12 @@
         <!-- Footer Grid Output Field-->
         <Grid Name="FooterGrid" Grid.Row="2" Grid.ColumnSpan="2" >
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
@@ -211,27 +210,58 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <!-- -->
-            
-            <Border Grid.ColumnSpan="4" Background="Ivory" BorderBrush="Bisque" BorderThickness="4"
+
+            <Border Grid.ColumnSpan="4" Background="Ivory" BorderBrush="Bisque"
+                    BorderThickness="4"
                     CornerRadius="10" >
-                <WrapPanel >
-                <Button Name="okLight_btn" Width="20" Height="20" Margin="60,0,60,0" Focusable="False">Ok</Button>
-                <Label FontSize="20" FontWeight="Black" Margin="30,0">
-                    Output Fields
-                </Label>
-                    <Button Name="errorLight_btn" Width="40" Height="20" Margin="50,0" Focusable="False">Error</Button>
-                    </WrapPanel>
-                
+                <WrapPanel>
+                    <Button Name="okLight_btn" Width="20" Height="20"
+                            Margin="60,0,60,0" Focusable="False" >
+                        Ok
+                    </Button>
+                    <Label FontSize="20" FontWeight="Black" Margin="30,0" >
+                        Output Fields
+                    </Label>
+                    <Button Name="errorLight_btn" Width="40" Height="20"
+                            Margin="50,0" Focusable="False" >
+                        Error
+                    </Button>
+                </WrapPanel>
+
             </Border>
-            <TextBox Name="resultText_tbx" Grid.Row="1" Grid.ColumnSpan="2" Focusable="False"/> <!-- Results from operations-->
-            <Button Name="resultReset_btn" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Width="120" Height="30" Focusable="False" Click="ResultReset_btn_OnClick" Background="white" Foreground="white" BorderThickness="0">Reset Querry</Button>
-            <TextBox  Name="errorText_tbx" Grid.Row="2" Grid.ColumnSpan="2" Focusable="False"/> <!-- Error informations-->
-            <Button Name="errorReset_btn" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Width="120" Height="30" Focusable="False" Click="ErrorReset_btn_OnClick" Background="white" Foreground="white" BorderThickness="0">Reset Error</Button>
-            <TextBlock Grid.Row="3" Grid.Column="0" FontSize="12" FontWeight="Black" VerticalAlignment="Center">Free Lots: </TextBlock>
-            <TextBox Name="freeTicker_tbx" Grid.Row="3" Grid.Column="0" Focusable="False" Width="50"/>
-            <TextBlock Grid.Row="3" Grid.Column="1" FontSize="12" FontWeight="Black" VerticalAlignment="Center">Used Lots: </TextBlock>
-            <TextBox Name="usedTicker_tbx" Grid.Row="3" Grid.Column="1" Focusable="False" Width="50"/>
-            <Button Name="clearVehicleDataWindows_btn" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Width="120" Height="30" Click="ClearVehicleDataWindows_btn_OnClick">Clear all</Button>
+            <TextBox Name="resultText_tbx" Grid.Row="1" Grid.ColumnSpan="2"
+                     Focusable="False" /> <!-- Results from operations-->
+            <Button Name="resultReset_btn" Grid.Row="1" Grid.Column="2"
+                    Grid.ColumnSpan="2" Width="120" Height="30"
+                    Focusable="False" Click="ResultReset_btn_OnClick"
+                    Background="white" Foreground="white" BorderThickness="0" >
+                Reset Querry
+            </Button>
+            <TextBox Name="errorText_tbx" Grid.Row="2" Grid.ColumnSpan="2"
+                     Focusable="False" /> <!-- Error informations-->
+            <Button Name="errorReset_btn" Grid.Row="2" Grid.Column="2"
+                    Grid.ColumnSpan="2" Width="120" Height="30"
+                    Focusable="False" Click="ErrorReset_btn_OnClick"
+                    Background="white" Foreground="white" BorderThickness="0" >
+                Reset Error
+            </Button>
+            <TextBlock Grid.Row="3" Grid.Column="0" FontSize="12"
+                       FontWeight="Black" VerticalAlignment="Center" >
+                Free Lots:
+            </TextBlock>
+            <TextBox Name="freeTicker_tbx" Grid.Row="3" Grid.Column="0"
+                     Focusable="False" Width="50" />
+            <TextBlock Grid.Row="3" Grid.Column="1" FontSize="12"
+                       FontWeight="Black" VerticalAlignment="Center" >
+                Used Lots:
+            </TextBlock>
+            <TextBox Name="usedTicker_tbx" Grid.Row="3" Grid.Column="1"
+                     Focusable="False" Width="50" />
+            <Button Name="clearVehicleDataWindows_btn" Grid.Row="3"
+                    Grid.Column="2" Grid.ColumnSpan="2" Width="120" Height="30"
+                    Click="ClearVehicleDataWindows_btn_OnClick" >
+                Clear all
+            </Button>
             <!-- todo: labels for the current lot count free and used -->
         </Grid>
 
