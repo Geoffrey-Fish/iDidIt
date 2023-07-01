@@ -8,8 +8,11 @@ using Newtonsoft.Json;
 using Vehicles;
 using Vehicles.Land;
 
+
 namespace ParkHouseV2.Models;
 
+
+[JsonConverter(typeof(ParkHouseConverter))]
 public class ParkHouse
 	{
 	#region stats
@@ -65,9 +68,11 @@ public class ParkHouse
 	/// <summary>
 	///     List of all parked vehicles
 	/// </summary>
+	[JsonConverter(typeof(VehicleArrayConverter))]
 	public Vehicle[] parkingLots;
 
 	#endregion
+
 
 	#region Constructors
 
@@ -85,7 +90,7 @@ public class ParkHouse
 	public ParkHouse(int Lots)
 		{
 		parkingLots = new Vehicle[Lots]; //New Array for the Vehicles to come
-		for(var i = 0; i < Lots; i++)   //Assign null for every lot
+		for(var i = 0;i < Lots;i++)   //Assign null for every lot
 			parkingLots[i] = null;
 		TotalLots = Lots;
 		FreeLots = Lots;
@@ -96,10 +101,10 @@ public class ParkHouse
 		UsedLotNumbers = new ObservableCollection<int>();
 		LicencePlates = new ObservableCollection<string>();
 		Models = new ObservableCollection<string>();
-		SaveAllData();
 		}
 
 	#endregion
+
 
 	#region Load and Save
 
@@ -138,6 +143,7 @@ public class ParkHouse
 		}
 
 	#endregion
+
 
 	#region Park in and out
 
@@ -190,7 +196,7 @@ public class ParkHouse
 	/// </summary>
 	public void Leaving(Vehicle vehicle)
 		{
-		var lot = Array.IndexOf(parkingLots, vehicle);
+		var lot = Array.IndexOf(parkingLots,vehicle);
 
 		// todo: implement here logic for money cost
 		parkingLots[lot] = null;
@@ -210,6 +216,7 @@ public class ParkHouse
 		}
 
 	#endregion
+
 
 	#region querrymethods
 
@@ -261,7 +268,7 @@ public class ParkHouse
 			(vehicle is Motorcycle moto &&
 			 moto.LicencePlate == licencePlate));
 		if(correctVehicle != null)
-			return Array.IndexOf(parkingLots, correctVehicle);
+			return Array.IndexOf(parkingLots,correctVehicle);
 
 		return 0;
 		}
@@ -282,10 +289,13 @@ public class ParkHouse
 
 	#endregion
 
+
 	/// <summary>
 	///     For more fun and diversity, choose random parkinglot
 	/// </summary>
-	/// <returns>number of parking lot to use</returns>
+	/// <returns>number of parking lot to use</returns> 
+	/// 
+	/// 
 	private int RandomLotChooser()
 		{
 		var rng = new Random();
@@ -296,6 +306,7 @@ public class ParkHouse
 		return place;
 		}
 
+
 	#region Testcenter
 
 	/// <summary>
@@ -303,7 +314,7 @@ public class ParkHouse
 	/// </summary>
 	/// <param name="vec">which vehicle to place</param>
 	/// <param name="i">on which position in the Array</param>
-	public void TestSetParkLot(Vehicle vec, int i)
+	public void TestSetParkLot(Vehicle vec,int i)
 		{
 		parkingLots[i] = vec;
 		}
@@ -312,7 +323,7 @@ public class ParkHouse
 		{
 		var result = "";
 		var len = parkingLots.Length;
-		for(var i = 0; i < len; i++)
+		for(var i = 0;i < len;i++)
 			if(parkingLots[i] != null)
 				result += parkingLots[i].Name;
 		return result;

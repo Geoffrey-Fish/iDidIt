@@ -43,7 +43,7 @@
         /// <summary>
         ///     LicencePlate Number, look for LicencePlateGenerator
         /// </summary>
-        public string LicencePlate { get; }
+        public string LicencePlate { get; set; }
 
         /// <summary>
         ///     Good ol' Horsepower

@@ -37,7 +37,7 @@
         /// <summary>
         ///     LicencePlate Number, look for LicencePlateGenerator
         /// </summary>
-        public string LicencePlate { get; }
+        public string LicencePlate { get; set; }
 
         /// <summary>
         ///     Wheels, maybe it is a trike, ya know...

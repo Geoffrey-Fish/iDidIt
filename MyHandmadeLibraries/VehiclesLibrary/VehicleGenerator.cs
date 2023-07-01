@@ -261,6 +261,67 @@ namespace Vehicles
         // Add more fitting types for Satellites
     };
         #endregion
+
+        /// <summary>
+        /// Get the Lists out of this Library for further use
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static List<string> DataListExporter(string type)
+        {
+            switch (type)
+            {
+                case "Colors":
+                    return Colors;
+                case " CarNames":
+                    return CarNames;
+                case "CarTypes":
+                    return CarTypes;
+                case "MotorcycleNames":
+                    return MotorcycleNames;
+                case "MotorcycleTypes":
+                    return MotorcycleTypes;
+                case "BycicleNames":
+                    return BycicleNames;
+                case "BycicleTypes":
+                    return BycicleTypes;
+                case "TruckNames":
+                    return TruckNames;
+                case "TruckTypes":
+                    return TruckTypes;
+                case "HelicopterNames":
+                    return HelicopterNames;
+                case "HelicopterTypes":
+                    return HelicopterTypes;
+                case "PlaneNames":
+                    return PlaneNames;
+                case "PlaneTypes":
+                    return PlaneTypes;
+                case "BoatNames":
+                    return BoatNames;
+                case "BoatTypes":
+                    return BoatTypes;
+                case "ShipNames":
+                    return ShipNames;
+                case "ShipTypes":
+                    return ShipTypes;
+                case "RocketNames":
+                    return RocketNames;
+                case "RocketTypes":
+                    return RocketTypes;
+                case "SatelliteNames":
+                    return SatelliteNames;
+                case "SatelliteTypes":
+                    return SatelliteTypes;
+                default:
+                    return null;
+            }
+        }
+        
+        
+        
+        
+        
         //Random Generator, LEET Edition^^
         private static Random rng = new Random(1337);
 

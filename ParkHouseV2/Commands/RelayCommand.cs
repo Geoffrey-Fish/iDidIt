@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Windows.Input;
 
+
 namespace ParkHouseV2.Commands;
 
-public class RelayCommand: ICommand
+
+public class RelayCommand:ICommand
 	{
 	public event EventHandler? CanExecuteChanged;
 
@@ -20,7 +22,7 @@ public class RelayCommand: ICommand
 		_Execute(parameter);
 		}
 
-	public RelayCommand(Action<object> execute, Predicate<object> canExecute)
+	public RelayCommand(Action<object> execute,Predicate<object> canExecute)
 		{
 		_Execute = execute;
 		_CanExecute = canExecute;
