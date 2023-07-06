@@ -334,7 +334,7 @@ public class MainViewModel:INotifyPropertyChanged
 		get { return _searchLotNumberCobo; }
 		set
 			{
-			_searchModelCobo = value;
+			_searchLotNumberCobo = value;
 			OnPropertyChanged(nameof(SearchLotNumberCobo));
 			}
 		}
@@ -371,6 +371,8 @@ public class MainViewModel:INotifyPropertyChanged
 	/// </summary>
 	public void CreateNewParkHouse()
 		{
+		//testing
+		//		MessageBox.Show("Works");
 		//todo:setting for money per hour
 		if(LotNumber != null)
 			{
@@ -446,7 +448,7 @@ public class MainViewModel:INotifyPropertyChanged
 		}
 
 	//Custom Setters, from CustomWindow
-
+	//todo: obacht die müssen noch gemacht werden
 	public void CustomCarSetter(Car car)
 		{
 		CarNow = car;

@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 
 using ParkHouseV2.ViewModel;
 
@@ -26,5 +27,17 @@ public partial class CarCreation:Window
 		//todo: close window
 		//todo: dunno
 		carCreationViewModel.VehicleCreationForwarder();
+		Close();
+		;
+		}
+
+	private void CloseCommandHandler(object sender,ExecutedRoutedEventArgs e)
+		{
+		this.Close();
+		}
+
+	private void Testbutton_OnClick(object sender,RoutedEventArgs e)
+		{
+		carCreationViewModel.testtextfiller();
 		}
 	}

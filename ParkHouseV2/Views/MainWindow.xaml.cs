@@ -38,7 +38,7 @@ public partial class MainWindow
 										//Clear up
 		createPhouse_btn.Focusable = false; //save button from idots
 		loadLastPh_btn.Focusable = false; //same
-		lotAmount_tbx.Text = null;  //same
+		lotAmount_tbx.Text = null; //same
 		}
 
 	/// <summary>
@@ -49,11 +49,29 @@ public partial class MainWindow
 		//Clear up
 		createPhouse_btn.Focusable = false; //save button from idots
 		loadLastPh_btn.Focusable = false; //same
-		lotAmount_tbx.Text = null;  //same
+		lotAmount_tbx.Text = null; //same
 		}
 
 	#endregion
 
+	#region Vehicle Creation
+
+	private void Car_btn_OnClick(object sender,RoutedEventArgs e)
+		{
+		viewModel.NewCar();
+		}
+
+	private void MoCy_btn_OnClick(object sender,RoutedEventArgs e)
+		{
+		viewModel.NewBike();
+		}
+
+	private void Truck_btn_OnClick(object sender,RoutedEventArgs e)
+		{
+		viewModel.NewTruck();
+		}
+
+	#endregion
 
 	#region In and out buttons
 
@@ -125,5 +143,7 @@ public partial class MainWindow
 		{
 		var carCreation = new CarCreation();
 		carCreation.Show();
+
 		}
+
 	}

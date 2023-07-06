@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 
 using ParkHouseV2.Models;
 
@@ -200,6 +201,23 @@ public class CarCreationViewModel:INotifyPropertyChanged
 
 	#endregion
 
+	#region MyRegion
+
+
+	public void testtextfiller()
+		{
+		string testtext = "";
+		int test = CarModels.Count;
+		foreach(string ding in CarModels)
+			{
+			testtext += ding;
+			testtext += ", ";
+			}
+
+		MessageBox.Show(test.ToString());
+		}
+
+	#endregion
 	//todo: successtextbox
 
 	#region onpropertychanged

@@ -47,7 +47,8 @@
 		
 		<!--Licence input-->
 		<TextBox Grid.Row="2" Grid.Column="2" Width="130" Height="20" Name="licenceInput_tbx" VerticalAlignment="top" Text="{Binding LicencePlateTyped}"/>
-		<Button Name="createVehicle_btn" Grid.Row="2" Grid.Column="3" Width="100" Height="20" Content="Create" VerticalAlignment="Top" Click="createVehicle_btn_Click"/>
+		<Button Name="createVehicle_btn" Grid.Row="2" Grid.Column="3" Width="100" Height="20" Content="Create" VerticalAlignment="Top" Click="createVehicle_btn_Click" Command="ApplicationCommands.Close"/>
+		<Button x:Name="testbutton" Grid.Column="3" Content="Button" HorizontalAlignment="Left" Margin="35,70,0,0" Grid.Row="2" VerticalAlignment="Top" Click="Testbutton_OnClick"/>
 
 	</Grid>
 </Window>
